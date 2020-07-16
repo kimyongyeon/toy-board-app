@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>회원 정보 화면</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+</head>
+
+<body>
+<ul>
+    <li>
+        <a href="/v1/view/customer/">목록화면</a>
+        <a href="/v1/view/customer/detail">가입화면</a>
+    </li>
+</ul>
+
+<h1>회원 조회 화면</h1>
+
+<table class="w3-striped" >
+    <thead>
+    <tr>
+        <td>순번</td>
+        <td>아이디</td>
+        <td>이름</td>
+        <td>비밀번호</td>
+        <td>레벨</td>
+    </tr>
+    </thead>
+    <tbody id="customerList">
+    </tbody>
+    <a id="detailMove" style="display:none;" target="_self"></a>
+</table>
+<script>
+
+    window.onload = function() {
+        list(draw);
+    }
+
+    function draw(result) {
+        console.log(result);
+        let customerList = "";
+        result.map(c => {
+            customerList += `
+               <tr id="tbDetail">
+                    <td>${c.id}</td>
+                    <td>${c.userId}</td>
+                    <td>${c.userNm}</td>
+                    <td>${c.userPass}</td>
+                    <td>${c.userLevel}</td>
+               </tr>
+            `;
+        });
+        $("#customerList").html(customerList);
+    }
+
+    function list(draw) {
+        // ajax
+        $.ajax({
+            url: "/v1/api/customer/", success: function (result) {
+                draw(result);
+            }
+        });
+        return "hello main world";
+    }
+
+    function one() {
+        // 일반 페이지 이동
+        window.location.href="/v1/view/customer/detail"; // forward
+        // 로그인
+        window.location.replace("/v1/view/customer/detail"); // redirect
+
+        $("#detailMove").attr("href", "/v1/view/customer/detail?id=" +id).click();
+    }
+
+    //상세화면 나오기 - 과제(보라님)
+    // $('#tbDetail').click(function(){
+    //     <a href="/v1/view/customer/detail/", target="_self"></a>
+    //     var tr = $(this);
+    //     var td = tr.children();
+    //
+    //      = td.eq(0).text();
+    // });
+
+
+</script>
+</body>
+</html>
