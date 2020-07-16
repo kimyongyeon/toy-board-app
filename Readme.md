@@ -1,3 +1,27 @@
+# 깃 명령어
+## 깃 소스 업데이트 
+git pull origin master
+## 깃 소스 받기
+git clone https://github.com/kimyongyeon/toy-board-app.git
+## 깃 소스 추가 
+git add .
+## 깃 소스 커밋 (로컬 저장 )
+git commit -am "코멘트 달고... 블라블라~"
+## 깃 소스 푸시 (서버 전송)
+git push origin 브런치명
+## 깃 브런치 따기 
+git checkout -b 브런치명
+## 깃 브런치명 확인 (로컬)
+git branch 
+## 깃 브런치명 확인(서버 )
+git branch -a
+## 깃 로그 
+git log 
+## 깃 롤백 (revert: 본인것만 돌리기)
+git revert index
+## 깃 롤백 (reset: 앞에 커밋된 내용부터 롤백 인덱스까지 다 돌린다.)
+git reset --soft
+
 # 목록 => 상세보기 
 1. 못만들고 반성... 
 2. 홈페이지 가장중요한 것: 페이지 연결 (프로그래밍방식/태그방식) 
