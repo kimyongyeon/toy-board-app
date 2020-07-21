@@ -15,4 +15,9 @@ public class PostController {
     public String write() {
         return "/board/write";
     }
+
+
+
+
+
 }
