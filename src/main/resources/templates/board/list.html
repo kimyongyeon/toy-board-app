@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+<style>
+    table {
+        border-collapse: collapse;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
+</head>
+
+<body>
+
+<table>
+    <thead>
+    <tr>
+        <th class="one wide">번호</th>
+        <th class="ten wide">글제목</th>
+        <th class="two wide">작성자</th>
+        <th class="three wide">작성일</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="post : ${postList}">
+        <td>
+            <span th:text="${post.postNo}"></span>
+        </td>
+        <td>
+            <a th:href="@{'/post/' + ${post.postNo}}">
+                <span th:text="${post.postTitle}"></span>
+            </a>
+        </td>
+        <td>
+            <span th:text="${post.postWriter}"></span>
+        </td>
+        <td>
+            <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>
