@@ -1,16 +1,16 @@
 package com.project.toyboardapp.biz.post;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @NoArgsConstructor
-@Getter
+@AllArgsConstructor
+@Data
 @Entity
+@Builder
 @Table(name = "TB_POST")
-public class PostEntity extends TimeEntity{
+public class PostEntity extends TimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,14 +24,5 @@ public class PostEntity extends TimeEntity{
 
     @Column
     private String postWriter;
-
-    @Builder
-    public PostEntity(Long postNo, String postTitle, String postContents, String postWriter){
-        this.postNo = postNo;
-        this.postTitle = postTitle;
-        this.postContents = postContents;
-        this.postWriter = postWriter;
-    }
-
 
 }

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -19,7 +19,7 @@
     </li>
 </ul>
 
-<h1>회원 조회 화면</h1>
+<h1  th:text="${name}">회원 조회 화면</h1>
 
 <table class="w3-striped" >
     <thead>
@@ -32,50 +32,57 @@
     </tr>
     </thead>
     <tbody id="customerList">
+    <tr th:each="m,i : ${list}">
+        <td th:text="${m.no}">순번</td>
+        <td th:text="${m.userId}">아이디</td>
+        <td th:text="${m.userName}">이름</td>
+        <td th:text="${m.password}">비밀번호</td>
+        <td th:text="${m.level}">레벨</td>
+    </tr>
     </tbody>
     <a id="detailMove" style="display:none;" target="_self"></a>
 </table>
 <script>
 
-    window.onload = function() {
-        list(draw);
-    }
-
-    function draw(result) {
-        console.log(result);
-        let customerList = "";
-        result.map(c => {
-            customerList += `
-               <tr id="tbDetail">
-                    <td>${c.id}</td>
-                    <td>${c.userId}</td>
-                    <td>${c.userNm}</td>
-                    <td>${c.userPass}</td>
-                    <td>${c.userLevel}</td>
-               </tr>
-            `;
-        });
-        $("#customerList").html(customerList);
-    }
-
-    function list(draw) {
-        // ajax
-        $.ajax({
-            url: "/v1/api/customer/", success: function (result) {
-                draw(result);
-            }
-        });
-        return "hello main world";
-    }
-
-    function one() {
-        // 일반 페이지 이동
-        window.location.href="/v1/view/customer/detail"; // forward
-        // 로그인
-        window.location.replace("/v1/view/customer/detail"); // redirect
-
-        $("#detailMove").attr("href", "/v1/view/customer/detail?id=" +id).click();
-    }
+    // window.onload = function() {
+    //     list(draw);
+    // }
+    //
+    // function draw(result) {
+    //     console.log(result);
+    //     let customerList = "";
+    //     result.map(c => {
+    //         customerList += `
+    //            <tr id="tbDetail">
+    //                 <td>${c.id}</td>
+    //                 <td>${c.userId}</td>
+    //                 <td>${c.userNm}</td>
+    //                 <td>${c.userPass}</td>
+    //                 <td>${c.userLevel}</td>
+    //            </tr>
+    //         `;
+    //     });
+    //     $("#customerList").html(customerList);
+    // }
+    //
+    // function list(draw) {
+    //     // ajax
+    //     $.ajax({
+    //         url: "/v1/api/customer/", success: function (result) {
+    //             draw(result);
+    //         }
+    //     });
+    //     return "hello main world";
+    // }
+    //
+    // function one() {
+    //     // 일반 페이지 이동
+    //     window.location.href="/v1/view/customer/detail"; // forward
+    //     // 로그인
+    //     window.location.replace("/v1/view/customer/detail"); // redirect
+    //
+    //     $("#detailMove").attr("href", "/v1/view/customer/detail?id=" +id).click();
+    // }
 
     //상세화면 나오기 - 과제(보라님)
     // $('#tbDetail').click(function(){

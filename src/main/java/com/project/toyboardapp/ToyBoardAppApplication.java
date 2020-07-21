@@ -3,6 +3,8 @@ package com.project.toyboardapp;
 import com.project.toyboardapp.biz.customer.CustomerEntity;
 import com.project.toyboardapp.biz.customer.CustomerRepository;
 import com.project.toyboardapp.biz.customer.Customer_Level_Enum;
+import com.project.toyboardapp.biz.post.PostEntity;
+import com.project.toyboardapp.biz.post.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -17,6 +19,9 @@ public class ToyBoardAppApplication implements ApplicationRunner {
     @Autowired
     CustomerRepository repository;
 
+    @Autowired
+    PostRepository postRepository;
+
     public static void main(String[] args) {
         SpringApplication.run(ToyBoardAppApplication.class, args);
     }
@@ -24,7 +29,25 @@ public class ToyBoardAppApplication implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         System.out.println("Hello Toy Project");
-        defaultCustomers();
+//        defaultCustomers();
+        defaultPost();
+    }
+
+    private void defaultPost() {
+        PostEntity postEntity = new PostEntity();
+        for (int i=0; i<10; i++) {
+            postEntity = PostEntity.builder()
+                    .postNo(Long.parseLong(i+""))
+                    .postContents("content test " + i)
+                    .postTitle("title test " + i)
+                    .postWriter("writer test " + i).build();
+            if (1 == 1) {
+                throw new RuntimeException("에러를 만드는 사나이");
+            }
+            postRepository.save(postEntity);
+        }
+
+        // 폴리글랏 언어 프로그래밍 = 여러가지 언어사용해서 개발하는 패러다임
     }
 
     private void defaultCustomers() {
