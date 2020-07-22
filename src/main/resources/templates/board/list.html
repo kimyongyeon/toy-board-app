@@ -41,7 +41,7 @@
             <span th:text="${post.postWriter}"></span>
         </td>
         <td>
-            <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
+            <span th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
         </td>
     </tr>
     </tbody>

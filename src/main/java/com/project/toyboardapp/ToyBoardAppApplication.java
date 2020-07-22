@@ -41,9 +41,7 @@ public class ToyBoardAppApplication implements ApplicationRunner {
                     .postContents("content test " + i)
                     .postTitle("title test " + i)
                     .postWriter("writer test " + i).build();
-            if (1 == 1) {
-                throw new RuntimeException("에러를 만드는 사나이");
-            }
+
             postRepository.save(postEntity);
         }
 
