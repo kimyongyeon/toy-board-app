@@ -6,6 +6,7 @@ import com.project.toyboardapp.biz.customer.Customer_Level_Enum;
 import com.project.toyboardapp.biz.post.PostEntity;
 import com.project.toyboardapp.biz.post.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,6 +16,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EnableJpaAuditing //JPA Auditing 활성화
 @SpringBootApplication
 public class ToyBoardAppApplication implements ApplicationRunner {
+
+    @Value("${spring.profiles.active}")
+    private String profiles;
 
     @Autowired
     CustomerRepository repository;
@@ -29,8 +33,10 @@ public class ToyBoardAppApplication implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         System.out.println("Hello Toy Project");
+        if (profiles.equals("insert")) {
+            defaultPost();
 //        defaultCustomers();
-        defaultPost();
+        }
     }
 
     private void defaultPost() {
@@ -41,9 +47,6 @@ public class ToyBoardAppApplication implements ApplicationRunner {
                     .postContents("content test " + i)
                     .postTitle("title test " + i)
                     .postWriter("writer test " + i).build();
-            if (1 == 1) {
-                throw new RuntimeException("에러를 만드는 사나이");
-            }
             postRepository.save(postEntity);
         }
 
