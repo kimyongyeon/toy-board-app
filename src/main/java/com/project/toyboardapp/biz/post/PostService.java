@@ -30,4 +30,9 @@ public class PostService {
         return postDTOList;
 
     }
+
+    @Transactional
+    public Long savePost(PostDTO postDTO){
+        return postRepository.save(postDTO.toEntity()).getPostNo();
+    }
 }

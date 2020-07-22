@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -15,37 +16,25 @@ public class PostController {
     @Autowired
     private PostService postService;
 
+    //게시판 조회
     @GetMapping("/list")
     public String list(Model model) {
         List<PostDTO> postList = postService.getPostList();
         model.addAttribute("postList", postList);
         return "/board/list";
     }
+
+    //게시판 글쓰기
     @GetMapping("/write")
     public String write() {
         return "/board/write";
     }
 
-/*
-    private PostService postService;
-    @GetMapping("/postList") //게시글 목록조회
-    public String postList(Model model) {
-        List<PostDTO> postList = postService.getPostList();
-        model.addAttribute("postList", postList);
-        return "board/list.html";
-    }
-
-    @GetMapping("/post")
-    public String write() {
-        return "board/write.html";
-    }
-
-    @PostMapping("/post")
+    @PostMapping("/write")
     public String write(PostDTO postDTO) {
-        //postService.savePost(postDTO);
-
-        return "redirect:/";
-    }*/
+        postService.savePost(postDTO);
+        return "/board/list"; //"redirect:/";
+    }
 
 
 
