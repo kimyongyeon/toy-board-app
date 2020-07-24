@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{'/post/edit/' + ${postDTO.postNo}}" method="post">
+    <input type="hidden" name="_method" value="put"/>
+    <input type="hidden" name="postNo" th:value="${postDTO.postNo}"/>
+
+    제목 : <input type="text" name="postTitle" th:value="${postDTO.postTitle}"> <br>
+    작성자 : <input type="text" name="postWriter" th:value="${postDTO.postWriter}"> <br>
+    <textarea name="postContents" th:text="${postDTO.postContents}"></textarea><br>
+
+    <input type="submit" value="수정">
+</form>
+</body>
+</html>

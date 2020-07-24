@@ -3,10 +3,7 @@ package com.project.toyboardapp.biz.post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,7 +27,7 @@ public class PostController {
         PostDTO postDTO = postService.getPost(postNo);
 
         model.addAttribute("postDTO", postDTO);
-        return "board/detail.html";
+        return "board/detail";
     }
 
     //게시판 글쓰기
@@ -45,6 +42,27 @@ public class PostController {
         return "redirect:/post/list";
     }
 
+    //게시글 수정하기
+    @GetMapping("/edit/{postNo}")
+    public String edit(@PathVariable("postNo") Long postNo, Model model) {
+        PostDTO postDTO = postService.getPost(postNo);
 
+        model.addAttribute("postDTO", postDTO);
+        return "board/update";
+    }
 
+    @PutMapping("/edit/{postNo}")
+    public String update(PostDTO postDTO) {
+        postService.savePost(postDTO);
+
+        return "redirect:/post/list/{postNo}";
+    }
+
+    //게시글 삭제하기
+    @DeleteMapping("/list/{no}")
+    public String delete(@PathVariable("postNo") Long postNo) {
+        postService.deletePost(postNo);
+
+        return "redirect:/post/list";
+    }
 }

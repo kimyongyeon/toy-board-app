@@ -51,4 +51,9 @@ public class PostService {
     public Long savePost(PostDTO postDTO){
         return postRepository.save(postDTO.toEntity()).getPostNo();
     }
+
+    @Transactional
+    public void deletePost(Long postNo) {
+        postRepository.deleteById(postNo);
+    }
 }
