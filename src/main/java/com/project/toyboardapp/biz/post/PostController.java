@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,6 +25,14 @@ public class PostController {
         return "/board/list";
     }
 
+    @GetMapping("/list/{postNo}")
+    public String detail(@PathVariable("postNo") Long postNo, Model model) {
+        PostDTO postDTO = postService.getPost(postNo);
+
+        model.addAttribute("postDTO", postDTO);
+        return "board/detail.html";
+    }
+
     //게시판 글쓰기
     @GetMapping("/write")
     public String write() {
@@ -33,7 +42,7 @@ public class PostController {
     @PostMapping("/write")
     public String write(PostDTO postDTO) {
         postService.savePost(postDTO);
-        return "redirect:/post/list"; //"redirect:/";
+        return "redirect:/post/list";
     }
 
 

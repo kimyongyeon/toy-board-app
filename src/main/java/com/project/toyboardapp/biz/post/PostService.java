@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -29,6 +30,21 @@ public class PostService {
         }
         return postDTOList;
 
+    }
+
+    @Transactional
+    public PostDTO getPost(Long postNo){
+        Optional<PostEntity> postEntityWrapper = postRepository.findById(postNo);
+        PostEntity postEntity = postEntityWrapper.get();
+
+        PostDTO postDTO = PostDTO.builder()
+                .postNo(postEntity.getPostNo())
+                .postTitle(postEntity.getPostTitle())
+                .postContents(postEntity.getPostContents())
+                .postWriter(postEntity.getPostWriter())
+                .createdDate(postEntity.getCreatedDate())
+                .build();
+        return postDTO;
     }
 
     @Transactional
