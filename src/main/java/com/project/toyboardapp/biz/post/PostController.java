@@ -33,7 +33,7 @@ public class PostController {
     @PostMapping("/write")
     public String write(PostDTO postDTO) {
         postService.savePost(postDTO);
-        return "/board/list"; //"redirect:/";
+        return "redirect:/post/list"; //"redirect:/";
     }
 
 
