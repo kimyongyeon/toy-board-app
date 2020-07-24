@@ -59,7 +59,7 @@ public class PostController {
     }
 
     //게시글 삭제하기
-    @DeleteMapping("/list/{no}")
+    @DeleteMapping("/list/{postNo}")
     public String delete(@PathVariable("postNo") Long postNo) {
         postService.deletePost(postNo);
 
