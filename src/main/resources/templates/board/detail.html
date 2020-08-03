@@ -3,24 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<style>
+    .container {
+        padding: 80px 120px;
+    }
+</style>
 </head>
+
 <body>
+<div th:insert="common/header.html" id="header"></div>
 
-<h2 th:text="${postDTO.postTitle}"></h2>
-<p th:inline="text">작성일 : [[${#temporals.format(postDTO.createdDate, 'yyyy-MM-dd HH:mm')}]]</p>
+<div class="container">
+    <h2 th:text="${postDTO.postTitle}"></h2>
+    <p th:inline="text">작성일 : [[${#temporals.format(postDTO.createdDate, 'yyyy-MM-dd HH:mm')}]]</p>
 
-<p th:text="${postDTO.postContents}"></p>
+    <p th:text="${postDTO.postContents}"></p>
 
-<!-- 수정/삭제 -->
-<div>
-    <a th:href="@{'/post/edit/' + ${postDTO.postNo}}">
-        <button>수정</button>
-    </a>
+    <!-- 수정/삭제 -->
+    <div>
+        <a th:href="@{'/post/edit/' + ${postDTO.postNo}}">
+            <button class="btn btn-default" style="float:right;">수정</button>
+        </a>
 
-    <form id="delete-form" th:action="@{'/post/list/' + ${postDTO.postNo}}" method="post">
-        <input type="hidden" name="_method" value="delete"/>
-        <button id="delete-btn">삭제</button>
-    </form>
+        <form id="delete-form" th:action="@{'/post/list/' + ${postDTO.postNo}}" method="post">
+            <input type="hidden" name="_method" value="delete"/>
+            <button class="btn btn-default" style="float:right;" id="delete-btn">삭제</button>
+        </form>
+    </div>
 </div>
 
 </body>

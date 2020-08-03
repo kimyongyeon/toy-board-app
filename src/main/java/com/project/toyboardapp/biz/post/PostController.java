@@ -51,7 +51,7 @@ public class PostController {
         return "board/update";
     }
 
-    @PutMapping("/edit/{postNo}")
+    @PostMapping("/edit/{postNo}")
     public String update(PostDTO postDTO) {
         postService.savePost(postDTO);
 
@@ -59,7 +59,7 @@ public class PostController {
     }
 
     //게시글 삭제하기
-    @DeleteMapping("/list/{postNo}")
+    @PostMapping("/list/{postNo}")
     public String delete(@PathVariable("postNo") Long postNo) {
         postService.deletePost(postNo);
 

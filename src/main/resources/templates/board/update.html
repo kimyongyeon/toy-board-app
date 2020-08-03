@@ -3,17 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script> <!---->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<style>
+    .container {
+        padding: 80px 120px;
+    }
+</style>
 </head>
 <body>
-<form th:action="@{'/post/edit/' + ${postDTO.postNo}}" method="post">
-    <input type="hidden" name="_method" value="put"/>
-    <input type="hidden" name="postNo" th:value="${postDTO.postNo}"/>
+<div th:insert="common/header.html" id="header"></div>
 
-    제목 : <input type="text" name="postTitle" th:value="${postDTO.postTitle}"> <br>
-    작성자 : <input type="text" name="postWriter" th:value="${postDTO.postWriter}"> <br>
-    <textarea name="postContents" th:text="${postDTO.postContents}"></textarea><br>
+<div class="container">
+    <form th:action="@{'/post/edit/' + ${postDTO.postNo}}" method="post">
+        <input type="hidden" name="_method" value="post"/>
+        <input type="hidden" name="postNo" th:value="${postDTO.postNo}"/>
 
-    <input type="submit" value="수정">
-</form>
+        제목 : <input type="text" class="form-control" name="postTitle" th:value="${postDTO.postTitle}"> <br>
+        작성자 : <input type="text" class="form-control" name="postWriter" th:value="${postDTO.postWriter}"> <br>
+        <textarea name="postContents" class="form-control" th:text="${postDTO.postContents}"></textarea><br>
+
+        <input type="submit" class="btn btn-default" style="float:right;" value="수정">
+    </form>
+</div>
 </body>
 </html>
