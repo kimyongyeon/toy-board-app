@@ -9,10 +9,20 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerDTO {
+public class MemberDTO {
     private Long id; // 숫자 기본키 => 성능 좋아진다.
     private String userId; // 아이디: 문자열 유니크
     private String userNm; // 이름
     private String userPass; // 패스워드
-    private Customer_Level_Enum userLevel;
+    private Member_Level_Enum userLevel;
+
+    public MemberEntity toEntity(){
+        return MemberEntity.builder()
+                .id(id)
+                .userId(userId)
+                .userNm(userNm)
+                .userPass(userPass)
+                .build();
+    }
 }
+

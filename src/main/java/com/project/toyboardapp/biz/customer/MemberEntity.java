@@ -1,20 +1,22 @@
 package com.project.toyboardapp.biz.customer;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 
+
 @Entity
+@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "TB_CUSTOMER")
-public class CustomerEntity {
-
+@Table(name = "TB_MEMBER")
+public class MemberEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name = "ID")
@@ -33,7 +35,7 @@ public class CustomerEntity {
 
     @Column(nullable = false, name = "USER_LEVEL")
     @Enumerated(EnumType.STRING) // ORDINAL: 순서를 데이터베이스에 저장, STRING: 이름을 데이터베이스에 저장
-    private Customer_Level_Enum userLevel;
+    private Member_Level_Enum userLevel;
 
     @Lob
     private String lobString; // 오라클: lobString clob, lobString longtext
@@ -46,5 +48,4 @@ public class CustomerEntity {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date regDate;
-
 }

@@ -12,8 +12,60 @@ import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 @Controller
-@RequestMapping("/v1/view")
-public class CustomerController {
+@RequestMapping("user")
+public class MemberController {
+
+    private MemberService memberService;
+
+    // 회원가입 페이지
+    @GetMapping("/signup")
+    public String dispSignup() {
+        return "/signup";
+    }
+
+    /* 회원가입 처리
+    @PostMapping("/signup")
+    public String execSignup(MemberDto memberDto) {
+        memberService.joinUser(memberDto);
+
+        return "redirect:/user/login";
+    } */
+
+    // 로그인 페이지
+    @GetMapping("/login")
+    public String dispLogin() {
+        return "/member/login";
+    }
+
+    // 로그인 결과 페이지
+    @GetMapping("/result")
+    public String dispLoginResult() {
+        return "/member/loginSuccess";
+    }
+
+    // 로그아웃 결과 페이지
+    @GetMapping("/user/logout/result")
+    public String dispLogout() {
+        return "/logout";
+    }
+
+    /* 접근 거부 페이지
+    @GetMapping("/user/denied")
+    public String dispDenied() {
+        return "/denied";
+    }
+
+    // 내 정보 페이지
+    @GetMapping("/user/info")
+    public String dispMyInfo() {
+        return "/myinfo";
+    } */
+
+    // 어드민 페이지
+    @GetMapping("/admin")
+    public String dispAdmin() {
+        return "/member/admin";
+    }
 
     @GetMapping("/customer")
     public String list(Model model) throws UnsupportedEncodingException {

@@ -1,12 +1,17 @@
 package com.project.toyboardapp.biz.customer;
 
+import lombok.Getter;
+
 import java.util.Random;
 
-public enum Customer_Level_Enum {
+@Getter
+public enum Member_Level_Enum {
     GUEST, ADMIN, USER;
 
-    public static Customer_Level_Enum getCustomer_Level_Enum() {
+    public static Member_Level_Enum getCustomer_Level_Enum() {
         Random random = new Random();
         return values()[random.nextInt(values().length)];
     }
+
+    private String value;
 }

@@ -1,8 +1,8 @@
 package com.project.toyboardapp;
 
-import com.project.toyboardapp.biz.customer.CustomerEntity;
-import com.project.toyboardapp.biz.customer.CustomerRepository;
-import com.project.toyboardapp.biz.customer.Customer_Level_Enum;
+import com.project.toyboardapp.biz.customer.MemberEntity;
+import com.project.toyboardapp.biz.customer.MemberRepository;
+import com.project.toyboardapp.biz.customer.Member_Level_Enum;
 import com.project.toyboardapp.biz.post.PostEntity;
 import com.project.toyboardapp.biz.post.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 public class ToyBoardAppApplication implements ApplicationRunner {
 
     @Autowired
-    CustomerRepository repository;
+    MemberRepository repository;
 
     @Autowired
     PostRepository postRepository;
@@ -51,13 +51,13 @@ public class ToyBoardAppApplication implements ApplicationRunner {
     private void defaultCustomers() {
         System.out.println("customer data insert start");
         for(int i=0; i<10; i++) {
-            CustomerEntity customerEntity = new CustomerEntity();
-            customerEntity.setId(Long.parseLong(i+""));
-            customerEntity.setUserId("userId" + i +"@gmail.com");
-            customerEntity.setUserPass("userPass::" + i);
-            customerEntity.setUserNm("userName::"+i);
-            customerEntity.setUserLevel(Customer_Level_Enum.getCustomer_Level_Enum()); // 랜덤으로 게스트, 사용자, 관리자
-            repository.save(customerEntity);
+            MemberEntity memberEntity = new MemberEntity();
+            memberEntity.setId(Long.parseLong(i+""));
+            memberEntity.setUserId("userId" + i +"@gmail.com");
+            memberEntity.setUserPass("userPass::" + i);
+            memberEntity.setUserNm("userName::"+i);
+            memberEntity.setUserLevel(Member_Level_Enum.getCustomer_Level_Enum()); // 랜덤으로 게스트, 사용자, 관리자
+            repository.save(memberEntity);
         }
 
         System.out.println("customer data insert end");
