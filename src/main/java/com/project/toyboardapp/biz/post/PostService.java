@@ -1,6 +1,7 @@
 package com.project.toyboardapp.biz.post;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -56,4 +57,44 @@ public class PostService {
     public void deletePost(Long postNo) {
         postRepository.deleteById(postNo);
     }
+
+    //검색
+    @Transactional
+    public List<PostDTO> searchPosts(String keyword) {
+        List<PostEntity> postEntities = postRepository.findByTitleContaining(keyword);
+        List<PostDTO> postDTOList = new ArrayList<>();
+
+        if (postEntities.isEmpty()) return postDTOList;
+
+        for (PostEntity postEntity : postEntities) {
+            postDTOList.add(this.convertEntityToDto(postEntity));
+        }
+        return postDTOList;
+    }
+
+    private PostDTO convertEntityToDto(PostEntity postEntity) {
+        return PostDTO.builder()
+                .postNo(postEntity.getPostNo())
+                .postTitle(postEntity.getPostTitle())
+                .postContents(postEntity.getPostContents())
+                .postWriter(postEntity.getPostWriter())
+                .createdDate(postEntity.getCreatedDate())
+                .build();
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

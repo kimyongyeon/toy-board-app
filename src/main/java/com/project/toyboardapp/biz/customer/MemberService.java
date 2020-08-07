@@ -1,5 +1,5 @@
 package com.project.toyboardapp.biz.customer;
-
+/*
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -43,3 +43,4 @@ public class MemberService implements UserDetailsService {
         return new User(userEntity.getUserId(), userEntity.getUserPass(), authorities);
     }
 }
+*/

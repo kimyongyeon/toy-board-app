@@ -15,7 +15,7 @@ import java.util.*;
 @RequestMapping("user")
 public class MemberController {
 
-    private MemberService memberService;
+    //private MemberService memberService;
 
     // 회원가입 페이지
     @GetMapping("/signup")

@@ -23,6 +23,16 @@
 
 <div th:insert="common/header.html" id="header"></div>
 
+<!-- 검색 form -->
+<form action="/post/search" method="GET">
+    <div>
+        <input name="keyword" type="text" placeholder="검색어를 입력해주세요">
+    </div>
+
+    <button>검색</button>
+</form>
+
+<!--게시판-->
 <div class="container text-center">
     <table class="table table-hover">
         <thead>

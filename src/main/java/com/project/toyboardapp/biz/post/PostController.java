@@ -65,4 +65,14 @@ public class PostController {
 
         return "redirect:/post/list";
     }
+
+    //검색
+    @GetMapping("/search")
+    public String search(@RequestParam(value="keyword") String keyword, Model model) {
+        List<PostDTO> postDTOList = postService.searchPosts(keyword);
+
+        model.addAttribute("postList", postDTOList);
+
+        return "post/list";
+    }
 }

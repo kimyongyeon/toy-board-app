@@ -15,7 +15,7 @@ package com.project.toyboardapp.config;
  * @param http
  * @throws Exception
  */
-
+/*
 import com.project.toyboardapp.biz.customer.MemberService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -28,6 +28,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
 
 @Configuration
 @EnableWebSecurity
@@ -108,4 +109,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
      */
-}
+
+
