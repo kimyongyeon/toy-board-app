@@ -47,25 +47,4 @@ public class CustomerController {
         return "CustomerDetail";
     }
 
-
-    //일단 여기에 postController 적어둠.
-    private PostService postService;
-    @GetMapping("/postList") //게시글 목록조회
-    public String postList(Model model) {
-        List<PostDTO> postList = postService.getPostList();
-        model.addAttribute("postList", postList);
-        return "board/list.html";
-    }
-/*
-    @GetMapping("/post")
-    public String write() {
-        return "board/write.html";
-    }
-
-    @PostMapping("/post")
-    public String write(PostDTO postDTO) {
-        //postService.savePost(postDTO);
-
-        return "redirect:/";
-    }*/
 }
