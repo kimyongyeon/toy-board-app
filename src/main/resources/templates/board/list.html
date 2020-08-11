@@ -23,17 +23,9 @@
 
 <div th:insert="common/header.html" id="header"></div>
 
-<!-- 검색 form -->
-<form action="/post/search" method="GET">
-    <div>
-        <input name="keyword" type="text" placeholder="검색어를 입력해주세요">
-    </div>
 
-    <button>검색</button>
-</form>
-
-<!--게시판-->
 <div class="container text-center">
+    <!--게시판-->
     <table class="table table-hover">
         <thead>
         <tr>
@@ -64,6 +56,15 @@
         </tbody>
     </table>
     <a th:href="@{/post/write}"><input class="btn btn-default" style="float:right;" type="button" value="글쓰기"></a>
+
+    <!-- 검색 form -->
+    <form action="/post/search" method="GET">
+        <div>
+            <input name="keyword" type="text" placeholder="검색어를 입력해주세요">
+            <button class="btn btn-default">검색</button>
+        </div>
+    </form>
+
 </div>
 
 </body>

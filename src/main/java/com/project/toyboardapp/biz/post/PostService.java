@@ -2,6 +2,7 @@ package com.project.toyboardapp.biz.post;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -12,6 +13,7 @@ import java.util.Optional;
 @AllArgsConstructor
 @Service
 public class PostService {
+    @Autowired
     private PostRepository postRepository;
 
     @Transactional
@@ -58,10 +60,11 @@ public class PostService {
         postRepository.deleteById(postNo);
     }
 
+
     //검색
     @Transactional
     public List<PostDTO> searchPosts(String keyword) {
-        List<PostEntity> postEntities = postRepository.findByTitleContaining(keyword);
+        List<PostEntity> postEntities = postRepository.findByPostTitleContaining(keyword);
         List<PostDTO> postDTOList = new ArrayList<>();
 
         if (postEntities.isEmpty()) return postDTOList;

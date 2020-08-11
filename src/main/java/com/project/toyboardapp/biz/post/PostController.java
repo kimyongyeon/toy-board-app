@@ -73,6 +73,6 @@ public class PostController {
 
         model.addAttribute("postList", postDTOList);
 
-        return "post/list";
+        return "board/list";
     }
 }
