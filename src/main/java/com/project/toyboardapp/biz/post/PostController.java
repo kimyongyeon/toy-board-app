@@ -75,4 +75,16 @@ public class PostController {
 
         return "board/list";
     }
+
+    //페이징
+    @GetMapping("/")
+    public String list(Model model, @RequestParam(value="page", defaultValue = "1") Integer pageNum) {
+        List<PostDTO> postList = postService.getPostList(pageNum);
+        Integer[] pageList = postService.getPageList(pageNum);
+
+        model.addAttribute("postList", postList);
+        model.addAttribute("pageList", pageList);
+
+        return "board/list";
+    }
 }

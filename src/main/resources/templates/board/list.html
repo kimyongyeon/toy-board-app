@@ -57,13 +57,21 @@
     </table>
     <a th:href="@{/post/write}"><input class="btn btn-default" style="float:right;" type="button" value="글쓰기"></a>
 
-    <!-- 검색 form -->
+    <!--페이징-->
+    <div>
+    <span th:each="pageNum : ${pageList}" th:inline="text">
+        <a th:href="@{'/?page=' + ${pageNum}}">[[${pageNum}]]</a>
+    </span>
+    </div>
+
+    <!-- 검색 -->
     <form action="/post/search" method="GET">
         <div>
             <input name="keyword" type="text" placeholder="검색어를 입력해주세요">
             <button class="btn btn-default">검색</button>
         </div>
     </form>
+
 
 </div>
 
